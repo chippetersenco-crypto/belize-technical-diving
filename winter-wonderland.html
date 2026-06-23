@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Winter Wonderland — Technical Diving in Belize</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap');
+    :root {
+      --bg: #06121a;
+      --bg-2: #0a1b26;
+      --ink: #eaf4f8;
+      --muted: #9fb6c0;
+      --cyan: #58c6d8;
+      --gold: #d6b06a;
+      --line: rgba(255,255,255,0.08);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Inter', -apple-system, sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    .site-header {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(6,18,26,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav-ribbon { max-width: 1200px; margin: 0 auto; padding: 0 28px; }
+    .site-nav {
+      list-style: none; display: flex; flex-wrap: wrap;
+      gap: 28px; justify-content: center;
+      padding: 16px 0; font-size: 0.82rem;
+      letter-spacing: 0.14em; text-transform: uppercase;
+    }
+    .site-nav a { color: var(--muted); transition: color 0.2s; padding-bottom: 4px; }
+    .site-nav a:hover { color: var(--ink); }
+    .site-nav a.active { color: var(--cyan); border-bottom: 1px solid var(--cyan); }
+    .hero { position: relative; height: 86vh; min-height: 560px; overflow: hidden; display: flex; align-items: flex-end; }
+    .hero-image { position: absolute; inset: 0; background-size: cover; background-position: center; }
+    .hero-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(6,18,26,0.25) 0%, rgba(6,18,26,0.1) 40%, rgba(6,18,26,0.92) 100%); }
+    .hero-content { position: relative; max-width: 1200px; width: 100%; margin: 0 auto; padding: 0 28px 64px; }
+    .expedition-tag { display: inline-block; font-size: 0.72rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--cyan); margin-bottom: 18px; }
+    .hero-title { font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: clamp(2.8rem, 7vw, 6rem); line-height: 1.02; letter-spacing: -0.01em; }
+    .hero-subtitle { margin-top: 18px; max-width: 560px; color: var(--muted); font-size: 1.05rem; }
+    .hero-depth { display: flex; align-items: baseline; gap: 12px; margin-top: 28px; }
+    .depth-number { font-family: 'Cormorant Garamond', serif; font-size: 2.6rem; color: var(--gold); line-height: 1; }
+    .depth-label { font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); }
+    .photo-credit-bar { background: var(--bg-2); border-bottom: 1px solid var(--line); }
+    .photo-credit-bar div { max-width: 1200px; margin: 0 auto; padding: 10px 28px; font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); text-align: right; }
+    .story-section { max-width: 760px; margin: 0 auto; padding: 88px 28px 40px; }
+    .story-chapter { margin-bottom: 56px; }
+    .story-headline { font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: clamp(1.8rem, 4vw, 2.8rem); line-height: 1.1; margin-bottom: 22px; }
+    .story-text { font-size: 1.12rem; color: #d3e2e8; margin-bottom: 18px; }
+    .gold { color: var(--gold); }
+    .cyan { color: var(--cyan); }
+    .pull-quote { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: clamp(1.6rem, 4vw, 2.4rem); line-height: 1.3; color: var(--cyan); border-left: 2px solid var(--gold); padding: 8px 0 8px 28px; margin: 48px 0; }
+    .fact-band { background: var(--bg-2); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .fact-inner { max-width: 1000px; margin: 0 auto; padding: 64px 28px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+    .fact-item { text-align: center; }
+    .fact-number { font-family: 'Cormorant Garamond', serif; font-size: 3rem; color: var(--gold); line-height: 1; }
+    .fact-unit { font-size: 0.74rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--cyan); margin-top: 10px; }
+    .fact-desc { font-size: 0.92rem; color: var(--muted); margin-top: 10px; }
+    .site-footer { padding: 56px 28px; text-align: center; border-top: 1px solid var(--line); color: var(--muted); font-size: 0.82rem; letter-spacing: 0.08em; }
+    .site-footer a.cyan:hover { color: var(--ink); }
+    @media (max-width: 640px) { .fact-inner { grid-template-columns: 1fr; gap: 28px; } }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav-ribbon">
+      <ul class="site-nav">
+        <li><a href="home.html">Home</a></li>
+        <li><a href="The-Great-Blue-Hole.html">The Great Blue Hole</a></li>
+        <li><a href="deep-blue-walls.html">The Deep Blue Walls of Belize</a></li>
+        <li><a href="giant-cave.html">Giant Cave</a></li>
+        <li><a class="active" href="winter-wonderland.html">Winter Wonderland</a></li>
+        <li><a href="san-pedro-caves.html">San Pedro Caves</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-image" style="background-image: url('winter-wonderland.jpg');"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <span class="expedition-tag">Belize &middot; Caye Chapel</span>
+      <h1 class="hero-title">Winter Wonderland</h1>
+      <p class="hero-subtitle">A hidden chamber of snow-white calcium and black stone, where nurse sharks drift through crystal water.</p>
+      <div class="hero-depth">
+        <span class="depth-number">20&prime;</span>
+        <span class="depth-label">Maximum Depth</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="photo-credit-bar"><div>Photograph &middot; Mark Long &copy; 2015</div></div>
+
+  <article class="story-section">
+    <div class="story-chapter">
+      <h2 class="story-headline">An Elusive Chamber off <span class="gold">Caye Chapel</span></h2>
+      <p class="story-text">Nestled a safe distance from Caye Chapel is the elusive Winter Wonderland. Two small access points lead you to a small 20&prime; deep chamber where you will come face to face with some wonderful nurse sharks.</p>
+      <p class="story-text"><span class="cyan">Be careful not to scare them!</span></p>
+    </div>
+
+    <div class="pull-quote">Snow that never melts, falling over stone that never sees the sun.</div>
+
+    <div class="story-chapter">
+      <h2 class="story-headline">A Snowfall of <span class="gold">Calcium Dust</span></h2>
+      <p class="story-text">Without the impact of nearby islands, Winter Wonderland is mostly crystal clear waters that reveal a snowy calcium dust that covers black speleothems.</p>
+      <p class="story-text">The contrast is what gives the cave its name &mdash; pale, drifting sediment settling like fresh powder across the dark formations below.</p>
+    </div>
+
+    <div class="story-chapter">
+      <h2 class="story-headline">One Day Is Never <span class="gold">Enough</span></h2>
+      <p class="story-text">This dive can be done in a single day &mdash; but most divers can&rsquo;t help but come back for more.</p>
+    </div>
+  </article>
+
+  <section class="fact-band">
+    <div class="fact-inner">
+      <div class="fact-item">
+        <div class="fact-number">20&prime;</div>
+        <div class="fact-unit">Feet Deep</div>
+        <div class="fact-desc">A shallow, single chamber reached through two narrow access points.</div>
+      </div>
+      <div class="fact-item">
+        <div class="fact-number">2</div>
+        <div class="fact-unit">Access Points</div>
+        <div class="fact-desc">Small entrances tucked a safe distance from Caye Chapel.</div>
+      </div>
+      <div class="fact-item">
+        <div class="fact-number">1</div>
+        <div class="fact-unit">Day Dive</div>
+        <div class="fact-desc">Easily completed in a day &mdash; though few resist returning.</div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    Technical Diving in Belize &middot; <a class="cyan" href="home.html">Return Home</a>
+  </footer>
+</body>
+</html>
